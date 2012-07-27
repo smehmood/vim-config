@@ -11,6 +11,11 @@ To update the repository, run
 
     make update
 
+Notes
+------------
+- The line `set gdefault` makes search and replace global by default. This means
+that adding `/g` only replace the first instance on a line.
+
 .mine
 ------------
 
