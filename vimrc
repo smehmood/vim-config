@@ -52,9 +52,9 @@ set formatoptions-=t formatoptions+=croql
 "   /100 : save 100 lines from search history
 "   h    : disable hlsearch on start
 "   "500 : save up to 500 lines for each register
-"   :100 : up to 100 lines of command-line history will be remembered
+"   :1000 : up to 100 lines of command-line history will be remembered
 "   n... : where to save the viminfo files
-set viminfo=%100,'100,/100,h,\"500,:100,n~/.vim/viminfo
+set viminfo=%100,'100,/100,h,\"500,:1000,n~/.vim/viminfo
 
 " ctags: recurse up to home to find tags. See
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
