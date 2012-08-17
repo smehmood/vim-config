@@ -130,6 +130,12 @@ vnoremap @ :normal! @
 nnoremap j gj
 nnoremap k gk
 
+" Resize window splits
+nnoremap - 3<C-w>-
+nnoremap = 3<C-w>+
+nnoremap _ 3<C-w><
+nnoremap + 3<C-w>>
+
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
 
