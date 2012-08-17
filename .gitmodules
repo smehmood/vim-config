@@ -132,7 +132,7 @@
 	ignore = dirty
 [submodule "bundle/molokai"]
 	path = bundle/molokai
-	url = git://github.com/nviennot/molokai.git
+	url = git://github.com/sidnair09/molokai.git
 	ignore = dirty
 [submodule "bundle/armasm"]
 	path = bundle/armasm
@@ -184,7 +184,7 @@
 	ignore = dirty
 [submodule "bundle/soy"]
 	path = bundle/soy
-	url = https://github.com/sidnair09/vim-soy.git
+	url = git://github.com/sidnair09/vim-soy.git
 	ignore = dirty
 [submodule "bundle/listmaps"]
 	path = bundle/listmaps
