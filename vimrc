@@ -136,6 +136,9 @@ nnoremap = 3<C-w>+
 nnoremap _ 3<C-w><
 nnoremap + 3<C-w>>
 
+" See :h ,
+nnoremap \ ,
+
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
 
