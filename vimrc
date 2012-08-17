@@ -94,14 +94,12 @@ au BufWinEnter *.* silent! loadview
 let mapleader=","
 let localmapleader=","
 
-map <Leader>= <C-w>=
-" Adjust viewports to the same size
-
 nmap <Leader>s :%s/
 vmap <Leader>s :s/
+map <Leader>/ :nohlsearch<cr>
+" Global search by default
 set gdefault
 
-map <Leader>/ :nohlsearch<cr>
 map <Leader>p :setlocal spell!<cr>
 
 map <C-PageDown> :cnext<cr>
@@ -136,7 +134,6 @@ nnoremap = 3<C-w>+
 nnoremap _ 3<C-w><
 nnoremap + 3<C-w>>
 
-" See :h ,
 nnoremap \ ,
 
 " Write file when you forget to use sudo
