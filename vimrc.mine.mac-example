@@ -1,3 +1,8 @@
+set clipboard=unnamed
+
+" xargs on Macs sucks, apparently
+let g:Grep_Xargs_Options='-0'
+
 " Useful settings for large codebases
 let g:ctrlp_regexp = 1
 let g:ctrlp_max_depth = 40
