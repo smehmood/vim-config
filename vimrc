@@ -142,6 +142,9 @@ cmap w!! w !sudo tee % >/dev/null
 """""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""
+nnoremap <Leader>b :BufSurfBack<cr>
+nnoremap <Leader>f :BufSurfForward<cr>
+
 nnoremap <C-g> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$',
     \ '\.egg$', '^\.git$', '\~$', '\.cmi', '\.cmo']
@@ -192,7 +195,7 @@ noremap <Leader>t- :Tabularize /-><CR>
 noremap <Leader>t, :Tabularize /,\zs/l0l1<CR>
 noremap <Leader>t\| :Tabularize /\|<CR>
 
-nnoremap <Leader>b :TagbarToggle<CR>
+nnoremap <Leader>T :TagbarToggle<CR>
 
 """""""""""""""""""""""""
 " Custom functions

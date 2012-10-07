@@ -210,3 +210,6 @@
 	path = bundle/less
 	url = https://github.com/groenewege/vim-less.git
 	ignore = dirty
+[submodule "bundle/bufsurf"]
+	path = bundle/bufsurf
+	url = https://github.com/ton/vim-bufsurf.git
