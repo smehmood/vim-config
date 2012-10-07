@@ -105,8 +105,8 @@ map <Leader>p :setlocal spell!<cr>
 map <C-PageDown> :cnext<cr>
 map <C-PageUp> :cprev<cr>
 
-map <Leader>v :vsp<CR>
-map <Leader>h :hsp<CR>
+" Replace highlighted text without putting it in the regular register
+vmap r "_dP
 
 " Open a file in the same dir as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -123,10 +123,6 @@ noremap K k
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal! @
-
-" Wrapped lines goes down/up to next row, rather than next line in file.
-nnoremap j gj
-nnoremap k gk
 
 " Resize window splits
 nnoremap - 3<C-w>-
@@ -180,7 +176,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['c', 'scss', 'html', 'scala'] }
 
-let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns_classes=['qfl', 'marks', 'vcsdiff', 'breakpoints']
 
 let g:Powerline_symbols = 'unicode'
 set laststatus=2
