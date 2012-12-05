@@ -87,6 +87,7 @@ let xml_use_xhtml = 1
 " Save/restore view on close/open (folds, cursor, etc.)
 au BufWinLeave *.* silent! mkview
 au BufWinEnter *.* silent! loadview
+set autochdir
 
 """""""""""""""""""""""""
 " Keybindings
