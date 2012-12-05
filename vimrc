@@ -133,6 +133,8 @@ nnoremap + 3<C-w>>
 
 nnoremap \ ,
 
+vmap s :!sort<CR>
+
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
 
