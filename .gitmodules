@@ -208,7 +208,7 @@
 	ignore = dirty
 [submodule "bundle/less"]
 	path = bundle/less
-	url = https://github.com/groenewege/vim-less.git
+	url = https://github.com/sidnair/vim-less.git
 	ignore = dirty
 [submodule "bundle/bufsurf"]
 	path = bundle/bufsurf
