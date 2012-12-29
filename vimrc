@@ -242,3 +242,20 @@ set pastetoggle=<F12>
 map <F12> :set invpaste paste?<CR>
 
 so ~/.vim/vimrc.mine
+
+" cscope
+if has("cscope")
+  set cscopetag " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+
+  " check cscope for definition of a symbol before checking ctags: set to 1
+  " if you want the reverse search order.
+  set csto=0
+
+  " add any cscope database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+  endif
+
+  " show msg when any other cscope db added
+  set cscopeverbose
+end
