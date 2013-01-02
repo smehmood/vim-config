@@ -141,8 +141,10 @@ cmap w!! w !sudo tee % >/dev/null
 """""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""
-nnoremap <Leader>b :BufSurfBack<cr>
-nnoremap <Leader>f :BufSurfForward<cr>
+" nnoremap <Leader>b :BufSurfBack<cr>
+" nnoremap <Leader>f :BufSurfForward<cr>
+nnoremap <Leader>b :bprev<cr>
+nnoremap <Leader>f :bnext<cr>
 
 nnoremap <C-g> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$',
