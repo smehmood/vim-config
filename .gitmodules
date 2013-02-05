@@ -212,3 +212,6 @@
 [submodule "bundle/thrift"]
 	path = bundle/thrift
 	url = https://github.com/sprsquish/thrift.vim.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = git://github.com/Valloric/YouCompleteMe.git
