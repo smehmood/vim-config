@@ -199,6 +199,8 @@ noremap <Leader>t\| :Tabularize /\|<CR>
 
 nnoremap <Leader>T :TagbarToggle<CR>
 
+au Cursorhold * checktime
+
 """""""""""""""""""""""""
 " Custom functions
 """""""""""""""""""""""""
