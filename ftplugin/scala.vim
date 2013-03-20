@@ -1,15 +1,12 @@
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'a:aclasses',
+    \ 'kinds' : [
         \ 'c:classes',
-        \ 'r:cclasses',
-        \ 'm:methods'
+        \ 't:traits',
+        \ 'T:types',
+        \ 'm:methods',
+        \ 'C:constants',
+        \ 'l:local variables',
+        \ 'o:objects',
     \ ]
 \ }
