@@ -1,8 +1,11 @@
 """""""""""""""""""""""""
 " Basic features
 """""""""""""""""""""""""
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+let pathogen_disabled = []
+if !has('gui_running')
+  call add(g:pathogen_disabled, 'css-color')
+endif
+call pathogen#infect()
 
 " Display options
 syntax on
@@ -28,15 +31,15 @@ set updatecount=100             " Write swap file to disk every 100 chars
 set directory=~/.vim/swap       " Directory to use for the swap file
 set diffopt=filler,iwhite       " In diff mode, ignore whitespace changes and align unchanged lines
 set history=1000                " Remember 1000 commands
-set timeoutlen=1500             " Slightly longer timeout on mappings
-set ttimeoutlen=100             " Shorter timeouts on keycodes
-set virtualedit=onemore         " Allow cursor one beyond last char
-set nrformats+=alpha            " Allow incrementing and decrementing letters
-                                " - the utility of this is limited by the Tim
-                                " Pope plugin that increments Roman Numerals,
-                                " but it's still nice to have.
+set scrolloff=3                 " Start scrolling 3 lines before the horizontal window border
+set visualbell t_vb=            " Disable error bells
+set shortmess+=A                " Always edit file, even when swap file is found
 
-" Formatting, indentation, and tabbing
+" up/down on displayed lines, not real lines. More useful than painful.
+noremap k gk
+noremap j gj
+
+" Formatting, indentation and tabbing
 set autoindent smartindent
 set smarttab                    " Make <tab> and <backspace> smarter
 set expandtab
@@ -52,7 +55,7 @@ set formatoptions-=t formatoptions+=croql
 "   /100 : save 100 lines from search history
 "   h    : disable hlsearch on start
 "   "500 : save up to 500 lines for each register
-"   :1000 : up to 100 lines of command-line history will be remembered
+"   :1000 : up to 1000 lines of command-line history will be remembered
 "   n... : where to save the viminfo files
 set viminfo=%100,'100,/100,h,\"500,:1000,n~/.vim/viminfo
 
@@ -67,7 +70,6 @@ if has("persistent_undo")
   set undodir=~/.vim/undo       " Allow undoes to persist even after a file is closed
   set undofile
 endif
-nnoremap <C-u> :GundoToggle<CR>
 
 " Search settings
 set ignorecase
@@ -77,17 +79,17 @@ set incsearch
 set showmatch
 
 " to_html settings
-let html_number_lines = 0
+let html_number_lines = 1
 let html_ignore_folding = 1
 let html_use_css = 1
-"let html_no_pre = 0
-"let use_xhtml = 1
 let xml_use_xhtml = 1
 
 " Save/restore view on close/open (folds, cursor, etc.)
-au BufWinLeave *.* silent! mkview
-au BufWinEnter *.* silent! loadview
-set autochdir
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+
+" After 4s of inactivity, check for external file modifications on next keyrpress
+au CursorHold * checktime
 
 """""""""""""""""""""""""
 " Keybindings
@@ -95,45 +97,50 @@ set autochdir
 let mapleader=","
 let localmapleader=","
 
-nmap <Leader>s :%s/
-vmap <Leader>s :s/
-map <Leader>/ :nohlsearch<cr>
-" Global search by default
-set gdefault
-
-map <Leader>p :setlocal spell!<cr>
-
-map <C-PageDown> :cnext<cr>
-map <C-PageUp> :cprev<cr>
-
-" Replace highlighted text without putting it in the regular register
-vmap r "_dP
-
-" Open a file in the same dir as the current file
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-
-" Make Y consistent with D and C
-noremap Y y$
-
-" Disable K for manpages - not used often and easy to accidentally hit
-noremap K k
+nmap <Leader>s :%S/
+vmap <Leader>s :S/
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal! @
 
-" Resize window splits
-nnoremap - 3<C-w>-
-nnoremap = 3<C-w>+
-nnoremap _ 3<C-w><
-nnoremap + 3<C-w>>
+" Toggles
+set pastetoggle=<F1>
+" the nmap is just for quicker powerline feedback
+nmap <silent> <F1>      :set invpaste<CR>
+nmap          <F2>      :setlocal spell!<CR>
+imap          <F2> <C-o>:setlocal spell!<CR>
 
-nnoremap \ ,
+map <Leader>/ :nohlsearch<cr>
+" Global search by default
+set gdefault
+
+map <Home> :tprev<CR>
+map <End>  :tnext<CR>
+
+" TODO Do also cnext and cprev as a fallback
+map <PageDown> :lnext<CR>
+map <PageUp>   :lprev<CR>
+
+" Make Y consistent with D and C
+function! YRRunAfterMaps()
+  nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>
+endfunction
+
+" Disable K for manpages - not used often and easy to accidentally hit
+noremap K k
+
+" Resize window splits
+" TODO Fix mousewheel
+nnoremap <Up>    3<C-w>-
+nnoremap <Down>  3<C-w>+
+nnoremap <Left>  3<C-w><
+nnoremap <Right> 3<C-w>>
+
+nnoremap _ :split<cr>
+nnoremap \| :vsplit<cr>
 
 vmap s :!sort<CR>
+vmap u :!sort -u<CR>
 
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -144,21 +151,24 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap <Leader>b :BufSurfBack<cr>
 nnoremap <Leader>f :BufSurfForward<cr>
 
+nnoremap <C-u> :GundoToggle<CR>
+
+" TODO Merge the NERDTreeFind with Toggle inteilligently.
 nnoremap <C-g> :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$',
-    \ '\.egg$', '^\.git$', '\~$', '\.cmi', '\.cmo']
+
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
+                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
 let NERDTreeHighlightCursorline=1
 let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 
-nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gb :Gblame<CR>
 
+nnoremap <Leader>a :Ack 
+
 " Put a space around comment markers
 let g:NERDSpaceDelims = 1
-
-nnoremap <Leader>a :Ack
 
 nnoremap <C-y> :YRShow<cr>
 let g:yankring_history_dir = '$HOME/.vim'
@@ -173,89 +183,67 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplVSplit = 20
 
 let g:syntastic_enable_signs=1
-let g:syntastic_check_on_open=1
-" C and Scala take too long to run, and scss misses imports
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['c', 'scss', 'html', 'scala'] }
 
-let g:quickfixsigns_classes=['qfl', 'marks', 'vcsdiff', 'breakpoints']
+let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
 let g:Powerline_symbols = 'unicode'
 set laststatus=2
 
-let g:ctrlp_map = '<Leader>r'
+let g:ctrlp_map = '<Leader>.'
 let g:ctrlp_custom_ignore = '/\.\|\.o\|\.so'
 let g:ctrlp_switch_buffer = 0
+let g:ctrlp_regexp = 1
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
-noremap <Leader>t= :Tabularize /=<CR>
-noremap <Leader>t: :Tabularize /^[^:]*:\zs/l0l1<CR>
-noremap <Leader>t> :Tabularize /=><CR>
-noremap <Leader>t- :Tabularize /-><CR>
-noremap <Leader>t, :Tabularize /,\zs/l0l1<CR>
-noremap <Leader>t\| :Tabularize /\|<CR>
+noremap \= :Tabularize /=<CR>
+noremap \: :Tabularize /^[^:]*:\zs/l0l1<CR>
+noremap \> :Tabularize /=><CR>
+noremap \, :Tabularize /,\zs/l0l1<CR>
+noremap \{ :Tabularize /{<CR>
+noremap \\| :Tabularize /\|<CR>
 
-nnoremap <Leader>T :TagbarToggle<CR>
-
-au Cursorhold * checktime
-
-"""""""""""""""""""""""""
-" Custom functions
-"""""""""""""""""""""""""
-:command -bar -nargs=1 OpenURL :!firefox <args>
-
-" http://stackoverflow.com/questions/2182427/right-margin-in-vim
-function! s:ToggleColorColumn()
-    if s:color_column_old == 0
-        let s:color_column_old = &colorcolumn
-        windo let &colorcolumn = 0
-    else
-        windo let &colorcolumn=s:color_column_old
-        let s:color_column_old = 0
-    endif
-endfunction
-
-if exists('+colorcolumn')
-  set colorcolumn=81
-  let s:color_column_old = 0
-  nnoremap <Leader>m :call <SID>ToggleColorColumn()<cr>
-endif
-
-" When opening a file, always jump to the last cursor position
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \     exe "normal g'\"" |
-    \ endif |
+nnoremap <Leader>t :TagbarOpen fjc<CR>
 
 " Screen settings
 let g:ScreenImpl = 'Tmux'
 let g:ScreenShellTmuxInitArgs = '-2'
 let g:ScreenShellInitialFocus = 'shell'
 let g:ScreenShellQuitOnVimExit = 0
-map <F5> :ScreenShellVertical<CR>
 
-" Always edit file, even when swap file is found
-set shortmess+=A
+map <C-\> :ScreenShellVertical<CR>
 
-" Toggle paste mode while in insert mode with F12
-set pastetoggle=<F12>
-map <F12> :set invpaste paste?<CR>
+"""""""""""""""""""""""""
+" Ruby Stuff
+"""""""""""""""""""""""""
+command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
+map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
+map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
+map <Leader>w :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
 
-so ~/.vim/vimrc.mine
-
-" cscope
+"""""""""""""""""""""""""
+" Cscope
+"""""""""""""""""""""""""
 if has("cscope")
-  set cscopetag " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+  " Use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+  set cscopetag
 
-  " check cscope for definition of a symbol before checking ctags: set to 1
-  " if you want the reverse search order.
+  " Check cscope for definition of a symbol before checking ctags. Set to 1 if
+  " you want the reverse search order.
   set csto=0
 
-  " add any cscope database in current directory
+  " Add any cscope database in current directory
   if filereadable("cscope.out")
     cs add cscope.out
   endif
 
-  " show msg when any other cscope db added
+  " Show msg when any other cscope db is added
   set cscopeverbose
 end
+
+"""""""""""""""""""""""""
+" Local config
+"""""""""""""""""""""""""
+so ~/.vim/vimrc.mine
