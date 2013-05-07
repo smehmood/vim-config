@@ -141,6 +141,9 @@ nnoremap <Right> 3<C-w>>
 nnoremap _ :split<cr>
 nnoremap \| :vsplit<cr>
 
+nnoremap <C-w>s :echo "Use _"<CR>
+nnoremap <C-w>v :echo "Use \|"<CR>
+
 vmap s :!sort<CR>
 vmap u :!sort -u<CR>
 
