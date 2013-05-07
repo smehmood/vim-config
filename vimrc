@@ -97,8 +97,10 @@ au CursorHold * checktime
 let mapleader=","
 let localmapleader=","
 
-nmap <Leader>s :%S/
-vmap <Leader>s :S/
+nmap <Leader>s :%s/
+vmap <Leader>s :s/
+nmap <Leader>S :%S/
+vmap <Leader>S :S/
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal! @
