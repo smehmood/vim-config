@@ -11,6 +11,7 @@ call pathogen#infect()
 syntax on
 set cursorline
 set number
+set encoding=utf-8
 set list!                       " Display unprintable characters
 set listchars=tab:▸\ ,trail:•,extends:»,precedes:«
 if $TERM =~ '256color'
@@ -113,7 +114,7 @@ nmap          <F2>      :setlocal spell!<CR>
 imap          <F2> <C-o>:setlocal spell!<CR>
 
 map <Leader>/ :nohlsearch<cr>
-" Global search by default
+" Global search and replace by default
 set gdefault
 
 map <Home> :tprev<CR>
