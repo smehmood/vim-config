@@ -6,10 +6,6 @@
 	path = bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
 	ignore = dirty
-[submodule "bundle/markdown"]
-	path = bundle/markdown
-	url = git://github.com/ujihisa/vim-markdown.git
-	ignore = dirty
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
@@ -218,3 +214,6 @@
 [submodule "bundle/go"]
 	path = bundle/go
 	url = https://github.com/fsouza/go.vim.git
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = https://github.com/tpope/vim-markdown.git
