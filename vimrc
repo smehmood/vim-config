@@ -33,6 +33,7 @@ set directory=~/.vim/swap       " Directory to use for the swap file
 set diffopt=filler,iwhite       " In diff mode, ignore whitespace changes and align unchanged lines
 set history=1000                " Remember 1000 commands
 set scrolloff=3                 " Start scrolling 3 lines before the horizontal window border
+set autochdir                   " Automatically cd into dir that the file is in
 set visualbell t_vb=            " Disable error bells
 set shortmess+=A                " Always edit file, even when swap file is found
 
