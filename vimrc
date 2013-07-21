@@ -191,7 +191,7 @@ let g:miniBufExplVSplit = 20
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['c', 'scss', 'html', 'scala'] }
+                           \ 'passive_filetypes': ['c', 'scss', 'html'] }
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
