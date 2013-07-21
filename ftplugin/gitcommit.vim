@@ -4,4 +4,4 @@ if exists('+colorcolumn')
   set colorcolumn=73
 endif
 
-set wrap
+set formatoptions+=t formatoptions-=l
