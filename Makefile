@@ -32,4 +32,7 @@ update:
 	git submodule sync
 	git submodule update --init
 
+helptags:
+	vim -c 'call pathogen#helptags()|q'
+
 .PHONY: all install update

@@ -197,7 +197,7 @@ let g:miniBufExplVSplit = 20
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['c', 'scss', 'html'] }
+                           \ 'passive_filetypes': ['c', 'scss', 'html', 'scala'] }
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
@@ -242,9 +242,9 @@ if has("cscope")
   " Use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
   set cscopetag
 
-  " Check cscope for definition of a symbol before checking ctags. Set to 1 if
-  " you want the reverse search order.
-  set csto=0
+  " Check ctags before checking scope. Set to 1 if you want the reverse search
+  " order.
+  set csto=1
 
   " Add any cscope database in current directory
   if filereadable("cscope.out")
