@@ -7,6 +7,9 @@ To install, run
     cd ~/.vim
     make install
 
+Follow the instructions for installing YouCompleteMe and tern\_for\_vim in each
+plugin's README.
+
 To update the repository, run
 
     make update
