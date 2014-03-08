@@ -166,10 +166,6 @@
 	path = bundle/listmaps
 	url = https://github.com/vim-scripts/listmaps.vim.git
 	ignore = dirty
-[submodule "bundle/solarized"]
-	path = bundle/solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-	ignore = dirty
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
