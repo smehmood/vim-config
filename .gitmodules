@@ -66,10 +66,6 @@
 	path = bundle/tabular
 	url = git://github.com/godlygeek/tabular
 	ignore = dirty
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = git://github.com/nviennot/snipmate.vim.git
-	ignore = dirty
 [submodule "bundle/coffee-script"]
 	path = bundle/coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
@@ -89,10 +85,6 @@
 [submodule "bundle/quickfixsigns"]
 	path = bundle/quickfixsigns
 	url = git://github.com/tomtom/quickfixsigns_vim.git
-	ignore = dirty
-[submodule "bundle/addon-mw-utils"]
-	path = bundle/addon-mw-utils
-	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
 	ignore = dirty
 [submodule "bundle/tlib"]
 	path = bundle/tlib
@@ -186,10 +178,6 @@
 	path = bundle/tmux
 	url = https://github.com/zaiste/tmux.vim.git
 	ignore = dirty
-[submodule "bundle/snipmate-snippets"]
-	path = bundle/snipmate-snippets
-	url = https://github.com/spf13/snipmate-snippets.git
-	ignore = dirty
 [submodule "bundle/less"]
 	path = bundle/less
 	url = https://github.com/sidnair/vim-less.git
@@ -223,4 +211,4 @@
 	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
+  url = https://github.com/honza/vim-snippets.git
