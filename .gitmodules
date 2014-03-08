@@ -114,10 +114,6 @@
 	path = bundle/molokai
 	url = git://github.com/sidnair/molokai.git
 	ignore = dirty
-[submodule "bundle/armasm"]
-	path = bundle/armasm
-	url = git://github.com/nviennot/vim-armasm.git
-	ignore = dirty
 [submodule "bundle/ruby"]
 	path = bundle/ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
