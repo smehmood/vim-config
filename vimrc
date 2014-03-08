@@ -125,6 +125,8 @@ map <End>  :tnext<CR>
 map <PageDown> :lnext<CR>
 map <PageUp>   :lprev<CR>
 
+let g:EclimCompletionMethod = 'omnifunc'
+
 " Make Y consistent with D and C
 function! YRRunAfterMaps()
   nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>

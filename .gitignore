@@ -9,3 +9,5 @@ doc/tags
 vimrc.mine
 gvimrc.mine
 /spell/
+eclim/
+plugin/eclim.vim
