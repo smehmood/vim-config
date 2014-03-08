@@ -135,6 +135,12 @@ endfunction
 " Disable K for manpages - not used often and easy to accidentally hit
 noremap K k
 
+" Movement across splits
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+
 " Resize window splits
 " TODO Fix mousewheel
 nnoremap <Up>    3<C-w>-
