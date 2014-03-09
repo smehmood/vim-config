@@ -21,6 +21,16 @@ Notes
 - The line `set gdefault` makes search and replace global by default. This means
   that adding `/g` only replace the first instance on a line.
 
+- If you see weird symbols in your status line, you need a special font to
+  render some unicode symbols. You can disabled this by removing the line
+    `let g:airline_powerline_fonts = 1`
+  from the vimrc. [vim-airline](https://github.com/bling/vim-airline) Has
+  instructions for updating the font if you want to symbols. On my Linux box, I
+  ran `fc-match monospace` to find which font I was using in my terminal, moved
+  the relevant font from [here](https://github.com/Lokaltog/powerline-fonts) to
+  ~/.fonts, ran `fc-cache -v ~/.fonts` to update the font cache, and updated my
+  KDE settings to use it.
+
 .mine files
 ------------
 
