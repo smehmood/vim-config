@@ -1,3 +1,5 @@
+set novisualbell
+
 set gfn=Monospace\ 9
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
