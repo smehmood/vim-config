@@ -22,7 +22,7 @@ Notes
   that adding `/g` only replace the first instance on a line.
 
 - If you see weird symbols in your status line, you need a special font to
-  render some unicode symbols. You can disabled this by removing the line
+  render some unicode symbols. You can disable this by removing the line
     `let g:airline_powerline_fonts = 1`
   from the vimrc. [vim-airline](https://github.com/bling/vim-airline) Has
   instructions for updating the font if you want to symbols. On my Linux box, I
