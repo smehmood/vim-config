@@ -215,6 +215,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
+" From https://github.com/tpope/vim-fugitive/blob/master/README.markdown:
+" automatically open quickfix window after :Ggrep
+autocmd QuickFixCmdPost *grep* cwindow
+
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
