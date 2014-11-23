@@ -91,8 +91,11 @@ let xml_use_xhtml = 1
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-" After 4s of inactivity, check for external file modifications on next keyrpress
+au BufWinEnter * checktime
+au WinEnter * checktime
+" After 1s of inactivity, check for external file modifications on next keypress
 au CursorHold * checktime
+set updatetime=1000
 
 """""""""""""""""""""""""
 " Keybindings
