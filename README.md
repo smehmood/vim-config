@@ -20,7 +20,10 @@ Notes
   In particular, the "Keybindings" sections might be useful.
 - The line `set gdefault` makes search and replace global by default. This means
   that adding `/g` only replace the first instance on a line.
-
+- For YCM, I had to run `./install.sh --clang-completer --system-libclang`
+  because of some issues with Arch. See
+  https://github.com/Valloric/YouCompleteMe/issues/538 and
+  https://github.com/Valloric/YouCompleteMe/issues/870#issuecomment-57724690
 - If you see weird symbols in your status line, you need a special font to
   render some unicode symbols. You can disable this by removing the line
     `let g:airline_powerline_fonts = 1`
