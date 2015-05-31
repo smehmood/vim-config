@@ -245,6 +245,21 @@ let g:ScreenShellQuitOnVimExit = 0
 
 map <C-\> :ScreenShellVertical<CR>
 
+"" Rainbow config
+let g:rainbow_conf = { 'ctermfgs': ['red', 'yellow', 'green', 'cyan', 'magenta', 'red', 'yellow', 'green', 'cyan', 'magenta'] }
+let g:rainbow_matching_filetypes = ['lisp', 'scheme', 'clojure', 'javascript', 'html']
+
+function s:load()
+  if count(g:rainbow_matching_filetypes, &ft) > 0
+    call rainbow#hook()
+  endif
+endfunction
+
+augroup rainbow
+  autocmd!
+  autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost,Syntax * nested call s:load()
+augroup END
+
 """""""""""""""""""""""""
 " Ruby Stuff
 """""""""""""""""""""""""
