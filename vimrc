@@ -1,10 +1,6 @@
 """""""""""""""""""""""""
 " Basic features
 """""""""""""""""""""""""
-let pathogen_disabled = []
-if !has('gui_running')
-  call add(g:pathogen_disabled, 'css-color')
-endif
 call pathogen#infect()
 
 " Display options
