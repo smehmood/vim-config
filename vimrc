@@ -161,6 +161,9 @@ nnoremap <C-w>v :echo "Use \|"<CR>
 vmap s :!sort<CR>
 vmap u :!sort -u<CR>
 
+" shift+k -> like shift+j, but no extra space
+noremap <S-k> gJ
+
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
 
@@ -253,6 +256,8 @@ command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."'
 map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
 map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
 map <Leader>w :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+map <Leader>m :w<CR> :call ScreenShellSend("\e[A")<CR>
+" map <Leader>r :w<CR> :call ScreenShellSend(":load ".@%)<CR>
 
 """""""""""""""""""""""""
 " Cscope
