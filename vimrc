@@ -213,7 +213,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['c', 'html', 'scala', 'java'] }
+                           \ 'passive_filetypes': ['c', 'html', 'scala', 'java', 'javascript'] }
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
@@ -255,7 +255,7 @@ map <C-\> :ScreenShellVertical<CR>
 
 "" Rainbow config
 let g:rainbow_conf = { 'ctermfgs': ['red', 'yellow', 'green', 'cyan', 'magenta', 'red', 'yellow', 'green', 'cyan', 'magenta'] }
-let g:rainbow_matching_filetypes = ['lisp', 'scheme', 'clojure', 'javascript', 'html']
+let g:rainbow_matching_filetypes = ['lisp', 'scheme', 'clojure', 'html']
 
 function s:load()
   if count(g:rainbow_matching_filetypes, &ft) > 0

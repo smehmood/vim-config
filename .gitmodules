@@ -226,3 +226,15 @@
 [submodule "bundle/applescript"]
 	path = bundle/applescript
 	url = git@github.com:vim-scripts/applescript.vim.git
+[submodule "bundle/vim-flow"]
+	path = bundle/vim-flow
+	url = git@github.com:flowtype/vim-flow.git
+[submodule "bundle/neoformat"]
+	path = bundle/neoformat
+	url = git@github.com:sbdchd/neoformat
+[submodule "bundle/neomake"]
+	path = bundle/neomake
+	url = git@github.com:neomake/neomake
+[submodule "bundle/flow"]
+	path = bundle/flow
+	url = git@github.com:flowtype/vim-flow
