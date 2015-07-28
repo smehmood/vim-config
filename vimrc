@@ -225,8 +225,11 @@ let g:ctrlp_map = '<Leader>.'
 map <Leader>, :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = '/\.\|\.o\|\.so'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_regexp = 1
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+" let g:ctrlp_regexp = 1
+" let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+" http://blog.patspam.com/2014/super-fast-ctrlp
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 noremap \= :Tabularize /=<CR>
 noremap \: :Tabularize /^[^:]*:\zs/l0l1<CR>
