@@ -234,3 +234,6 @@
 [submodule "bundle/flow"]
 	path = bundle/flow
 	url = git@github.com:flowtype/vim-flow
+[submodule "bundle/jsx"]
+	path = bundle/jsx
+	url = git@github.com:mxw/vim-jsx.git
