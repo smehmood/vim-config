@@ -170,10 +170,6 @@
 	path = bundle/bufsurf
 	url = https://github.com/ton/vim-bufsurf.git
 	ignore = dirty
-[submodule "bundle/thrift"]
-	path = bundle/thrift
-	url = https://github.com/sprsquish/thrift.vim.git
-	ignore = dirty
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = git://github.com/Valloric/YouCompleteMe.git
