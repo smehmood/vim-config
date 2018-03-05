@@ -130,6 +130,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " Make Y consistent with D and C
 function! YRRunAfterMaps()
   nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>
+  nnoremap <silent> yy :<C-U>YRYankCount 'ddP'<CR>
 endfunction
 
 " Disable K for manpages - not used often and easy to accidentally hit
@@ -156,9 +157,10 @@ nnoremap <C-w>v :echo "Use \|"<CR>
 
 vmap s :!sort<CR>
 vmap u :!sort -u<CR>
+vmap c :!sort \| uniq -c<CR>
 
 " shift+k -> like shift+j, but no extra space
-noremap <S-k> gJ
+noremap <S-k> Jx
 
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -196,6 +198,7 @@ let g:NERDSpaceDelims = 1
 nnoremap <C-y> :YRShow<cr>
 let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_manual_clipboard_check = 0
+let g:yankring_max_history = 10000
 
 map <Leader>l :MiniBufExplorer<cr>
 let g:miniBufExplorerMoreThanOne = 10000
@@ -210,7 +213,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['c', 'scss', 'html', 'scala'] }
+                           \ 'passive_filetypes': ['c', 'html', 'scala', 'java'] }
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
@@ -230,6 +233,8 @@ let g:ctrlp_switch_buffer = 0
 " http://blog.patspam.com/2014/super-fast-ctrlp
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" No extra sorting in mru mode
+let g:ctrlp_mruf_default_order = 1
 
 noremap \= :Tabularize /=<CR>
 noremap \: :Tabularize /^[^:]*:\zs/l0l1<CR>
