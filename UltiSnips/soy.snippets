@@ -1,0 +1,71 @@
+snippet csd "call, single line, data='all'"
+{call .$1 data="all" /}
+endsnippet
+
+snippet cs "call, single line"
+{call .$1 /}
+endsnippet
+
+snippet csp "call, single line, with param"
+{call .$1}{param $2: ${3:$$2} /}{/call}
+endsnippet
+
+snippet cmd "call, multi-line, data='all'"
+{call .$1 data="all"}
+	$2
+{/call}
+endsnippet
+
+snippet cm "call, multi-line"
+{call .$1}
+	$2
+{/call}
+endsnippet
+
+snippet p "param to a call"
+{param $1: ${2:$$1} /}
+endsnippet
+
+snippet pm "multi-line param to a call"
+{param $1}
+	$2
+{/param}
+endsnippet
+
+snippet m "msg tag"
+{msg desc="${1:desc}"}
+	${2:text}
+{/msg}
+endsnippet
+
+snippet t "template (private)"
+/**$1
+ */
+{template .$2_ private="true"}
+	$3
+{/template}
+endsnippet
+
+snippet pt "template (public)"
+/**$1
+ */
+{template .$2}
+	$3
+{/template}
+endsnippet
+
+snippet ' \* p' "param" r
+ @param $1 {$2}
+endsnippet
+
+snippet ' \* pc' "custom param" r
+ @param $1 {custom:$2}
+endsnippet
+
+snippet ' \* po' "optional param" r
+ @param? $1 {$2}
+endsnippet
+
+snippet ' \* poc' "custom optional param" r
+ @param? $1 {custom:$2}
+endsnippet

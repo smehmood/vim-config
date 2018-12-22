@@ -1,0 +1,50 @@
+snippet cc "Create React Class"
+/**
+ * $1
+ */
+var $2 = React.createClass({
+  propTypes: {
+  },
+
+  getInitialState: function() {
+    return {
+    };
+  },
+
+  render: function() {
+    return (
+      <div>
+        $3
+      </div>
+    );
+  }
+});
+
+module.exports = $2;
+endsnippet
+
+snippet pt "propType"
+$1: React.PropTypes.$2.isRequired,
+endsnippet
+
+snippet f "function"
+$1: function() {
+  $2
+},
+endsnippet
+
+snippet rd "return div"
+return (
+  <div>
+    $1
+  </div>
+);
+endsnippet
+
+snippet d "div"
+(
+  <div>
+    $1
+  </div>
+)
+endsnippet

@@ -1,10 +1,6 @@
 """""""""""""""""""""""""
 " Basic features
 """""""""""""""""""""""""
-let pathogen_disabled = []
-if !has('gui_running')
-  call add(g:pathogen_disabled, 'css-color')
-endif
 call pathogen#infect()
 
 " Display options
@@ -36,6 +32,7 @@ set scrolloff=3                 " Start scrolling 3 lines before the horizontal 
 set autochdir                   " Automatically cd into dir that the file is in
 set visualbell t_vb=            " Disable error bells
 set shortmess+=A                " Always edit file, even when swap file is found
+set ttimeoutlen=50
 
 " up/down on displayed lines, not real lines. More useful than painful.
 noremap k gk
@@ -90,8 +87,11 @@ let xml_use_xhtml = 1
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-" After 4s of inactivity, check for external file modifications on next keyrpress
+au BufWinEnter * checktime
+au WinEnter * checktime
+" After 1s of inactivity, check for external file modifications on next keypress
 au CursorHold * checktime
+set updatetime=1000
 
 """""""""""""""""""""""""
 " Keybindings
@@ -125,13 +125,22 @@ map <End>  :tnext<CR>
 map <PageDown> :lnext<CR>
 map <PageUp>   :lprev<CR>
 
+let g:EclimCompletionMethod = 'omnifunc'
+
 " Make Y consistent with D and C
 function! YRRunAfterMaps()
   nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>
+  nnoremap <silent> yy :<C-U>YRYankCount 'ddP'<CR>
 endfunction
 
 " Disable K for manpages - not used often and easy to accidentally hit
 noremap K k
+
+" Movement across splits
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 
 " Resize window splits
 " TODO Fix mousewheel
@@ -148,6 +157,10 @@ nnoremap <C-w>v :echo "Use \|"<CR>
 
 vmap s :!sort<CR>
 vmap u :!sort -u<CR>
+vmap c :!sort \| uniq -c<CR>
+
+" shift+k -> like shift+j, but no extra space
+noremap <S-k> Jx
 
 " Write file when you forget to use sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -169,6 +182,11 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 
+let g:UltiSnipsExpandTrigger = '<c-l>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsListSnippets = '<c-h>'
+
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gb :Gblame<CR>
 
@@ -180,6 +198,7 @@ let g:NERDSpaceDelims = 1
 nnoremap <C-y> :YRShow<cr>
 let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_manual_clipboard_check = 0
+let g:yankring_max_history = 10000
 
 map <Leader>l :MiniBufExplorer<cr>
 let g:miniBufExplorerMoreThanOne = 10000
@@ -189,21 +208,33 @@ let g:miniBufExplSplitBelow=1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplVSplit = 20
 
+let g:airline#extensions#tabline#enabled = 1
+
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['c', 'scss', 'html'] }
+                           \ 'passive_filetypes': ['c', 'html', 'scala', 'java', 'javascript'] }
 
 let g:quickfixsigns_classes=['qfl', 'vcsdiff', 'breakpoints']
 
-let g:Powerline_symbols = 'unicode'
+" From https://github.com/tpope/vim-fugitive/blob/master/README.markdown:
+" automatically open quickfix window after :Ggrep
+autocmd QuickFixCmdPost *grep* cwindow
+
 set laststatus=2
+let g:airline_powerline_fonts = 1
 
 let g:ctrlp_map = '<Leader>.'
+map <Leader>, :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = '/\.\|\.o\|\.so'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_regexp = 1
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+" let g:ctrlp_regexp = 1
+" let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+" http://blog.patspam.com/2014/super-fast-ctrlp
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store --ignore "**/*.pyc" -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" No extra sorting in mru mode
+let g:ctrlp_mruf_default_order = 1
 
 noremap \= :Tabularize /=<CR>
 noremap \: :Tabularize /^[^:]*:\zs/l0l1<CR>
@@ -222,6 +253,21 @@ let g:ScreenShellQuitOnVimExit = 0
 
 map <C-\> :ScreenShellVertical<CR>
 
+"" Rainbow config
+let g:rainbow_conf = { 'ctermfgs': ['red', 'yellow', 'green', 'cyan', 'magenta', 'red', 'yellow', 'green', 'cyan', 'magenta'] }
+let g:rainbow_matching_filetypes = ['lisp', 'scheme', 'clojure', 'html']
+
+function s:load()
+  if count(g:rainbow_matching_filetypes, &ft) > 0
+    call rainbow#hook()
+  endif
+endfunction
+
+augroup rainbow
+  autocmd!
+  autocmd BufNewFile,BufReadPost,FilterReadPost,FileReadPost,Syntax * nested call s:load()
+augroup END
+
 """""""""""""""""""""""""
 " Ruby Stuff
 """""""""""""""""""""""""
@@ -229,6 +275,8 @@ command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."'
 map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
 map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
 map <Leader>w :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+map <Leader>m :w<CR> :call ScreenShellSend("\e[A")<CR>
+" map <Leader>r :w<CR> :call ScreenShellSend(":load ".@%)<CR>
 
 """""""""""""""""""""""""
 " Cscope
@@ -237,9 +285,9 @@ if has("cscope")
   " Use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
   set cscopetag
 
-  " Check cscope for definition of a symbol before checking ctags. Set to 1 if
-  " you want the reverse search order.
-  set csto=0
+  " Check ctags before checking scope. Set to 1 if you want the reverse search
+  " order.
+  set csto=1
 
   " Add any cscope database in current directory
   if filereadable("cscope.out")

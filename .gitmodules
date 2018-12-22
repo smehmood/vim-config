@@ -66,10 +66,6 @@
 	path = bundle/tabular
 	url = git://github.com/godlygeek/tabular
 	ignore = dirty
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = git://github.com/nviennot/snipmate.vim.git
-	ignore = dirty
 [submodule "bundle/coffee-script"]
 	path = bundle/coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
@@ -89,10 +85,6 @@
 [submodule "bundle/quickfixsigns"]
 	path = bundle/quickfixsigns
 	url = git://github.com/tomtom/quickfixsigns_vim.git
-	ignore = dirty
-[submodule "bundle/addon-mw-utils"]
-	path = bundle/addon-mw-utils
-	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
 	ignore = dirty
 [submodule "bundle/tlib"]
 	path = bundle/tlib
@@ -122,21 +114,9 @@
 	path = bundle/molokai
 	url = git://github.com/sidnair/molokai.git
 	ignore = dirty
-[submodule "bundle/armasm"]
-	path = bundle/armasm
-	url = git://github.com/nviennot/vim-armasm.git
-	ignore = dirty
-[submodule "bundle/powerline"]
-	path = bundle/powerline
-	url = git://github.com/nviennot/vim-powerline.git
-	ignore = dirty
 [submodule "bundle/ruby"]
 	path = bundle/ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-	ignore = dirty
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
 	ignore = dirty
 [submodule "bundle/scala"]
 	path = bundle/scala
@@ -174,10 +154,6 @@
 	path = bundle/listmaps
 	url = https://github.com/vim-scripts/listmaps.vim.git
 	ignore = dirty
-[submodule "bundle/solarized"]
-	path = bundle/solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-	ignore = dirty
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
@@ -186,10 +162,6 @@
 	path = bundle/tmux
 	url = https://github.com/zaiste/tmux.vim.git
 	ignore = dirty
-[submodule "bundle/snipmate-snippets"]
-	path = bundle/snipmate-snippets
-	url = https://github.com/spf13/snipmate-snippets.git
-	ignore = dirty
 [submodule "bundle/less"]
 	path = bundle/less
 	url = https://github.com/sidnair/vim-less.git
@@ -197,15 +169,71 @@
 [submodule "bundle/bufsurf"]
 	path = bundle/bufsurf
 	url = https://github.com/ton/vim-bufsurf.git
-[submodule "bundle/thrift"]
-	path = bundle/thrift
-	url = https://github.com/sprsquish/thrift.vim.git
+	ignore = dirty
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = git://github.com/Valloric/YouCompleteMe.git
-[submodule "bundle/go"]
-	path = bundle/go
-	url = https://github.com/fsouza/go.vim.git
+	ignore = dirty
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
+	ignore = dirty
+[submodule "bundle/tern_for_vim"]
+	path = bundle/tern_for_vim
+	url = https://github.com/marijnh/tern_for_vim.git
+	ignore = dirty
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+	ignore = dirty
+[submodule "bundle/jade"]
+	path = bundle/jade
+	url = https://github.com/digitaltoad/vim-jade.git
+	ignore = dirty
+[submodule "bundle/vim-snippets"]
+	path = bundle/vim-snippets
+  url = https://github.com/honza/vim-snippets.git
+	ignore = dirty
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
+	ignore = dirty
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+	ignore = dirty
+[submodule "bundle/vim-dispatch"]
+	path = bundle/vim-dispatch
+	url = git://github.com/tpope/vim-dispatch.git
+	ignore = dirty
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+	ignore = dirty
+[submodule "bundle/css-color"]
+	path = bundle/css-color
+	url = git@github.com:ap/vim-css-color.git
+[submodule "bundle/rainbow"]
+	path = bundle/rainbow
+	url = https://github.com/luochen1990/rainbow.git
+[submodule "bundle/ctrlp-py-matcher"]
+	path = bundle/ctrlp-py-matcher
+	url = git@github.com:FelikZ/ctrlp-py-matcher.git
+[submodule "bundle/applescript"]
+	path = bundle/applescript
+	url = git@github.com:vim-scripts/applescript.vim.git
+[submodule "bundle/vim-flow"]
+	path = bundle/vim-flow
+	url = git@github.com:flowtype/vim-flow.git
+[submodule "bundle/neoformat"]
+	path = bundle/neoformat
+	url = git@github.com:sbdchd/neoformat
+[submodule "bundle/neomake"]
+	path = bundle/neomake
+	url = git@github.com:neomake/neomake
+[submodule "bundle/flow"]
+	path = bundle/flow
+	url = git@github.com:flowtype/vim-flow
+[submodule "bundle/jsx"]
+	path = bundle/jsx
+	url = git@github.com:mxw/vim-jsx.git
